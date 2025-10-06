@@ -41,7 +41,7 @@ export function TechStackSection() {
   ]
 
   const getIcon = (iconName: string): IconType | null => {
-    return (SimpleIcons as any)[iconName] || null
+    return (SimpleIcons as Record<string, IconType>)[iconName] || null
   }
 
   return (

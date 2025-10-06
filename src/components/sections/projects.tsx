@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { motion, AnimatePresence } from 'framer-motion'
-import { FadeInUp, StaggerContainer, StaggerItem } from '@/components/ui/page-transitions'
+import { FadeInUp } from '@/components/ui/page-transitions'
 import { projects } from '@/data'
 import { ExternalLink, Github, Star } from 'lucide-react'
 import Image from 'next/image'
@@ -83,7 +83,7 @@ export function ProjectsSection() {
             {filterButtons.map((button) => (
               <motion.button
                 key={button.key}
-                onClick={() => setFilter(button.key as any)}
+                onClick={() => setFilter(button.key as 'all' | 'web' | 'ai' | 'mobile')}
                 className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
                   filter === button.key
                     ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
