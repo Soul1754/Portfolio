@@ -41,10 +41,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <Analytics />
-      <SpeedInsights />
       <body className={`${inter.className} ${poppins.variable} antialiased`}>
         {children}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
