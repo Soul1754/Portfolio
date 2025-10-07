@@ -25,7 +25,7 @@ export const FadeInUp = ({
         delay,
         ease: "easeOut"
       }}
-      viewport={{ once, amount: 0.2 }}
+      viewport={{ once, amount: 0.1, margin: "0px 0px -100px 0px" }}
       className={className}
     >
       {children}
@@ -55,7 +55,7 @@ export const FadeInScale = ({
         delay,
         ease: "easeOut"
       }}
-      viewport={{ once, amount: 0.2 }}
+      viewport={{ once, amount: 0.1, margin: "0px 0px -100px 0px" }}
       className={className}
     >
       {children}

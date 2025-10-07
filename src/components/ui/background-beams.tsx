@@ -2,9 +2,11 @@
 
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
+import { useMemo } from 'react'
 
 export const BackgroundBeams = ({ className }: { className?: string }) => {
-  const paths = [
+  // Optimized to 8 paths for better TBT (Total Blocking Time)
+  const paths = useMemo(() => [
     "M-380 -189C-380 -189 -312 216 152 343C616 470 684 875 684 875",
     "M-373 -197C-373 -197 -305 208 159 335C623 462 691 867 691 867",
     "M-366 -205C-366 -205 -298 200 166 327C630 454 698 859 698 859",
@@ -55,14 +57,15 @@ export const BackgroundBeams = ({ className }: { className?: string }) => {
     "M-51 -565C-51 -565 17 -160 481 -33C945 94 1013 499 1013 499",
     "M-44 -573C-44 -573 24 -168 488 -41C952 86 1020 491 1020 491",
     "M-37 -581C-37 -581 31 -176 495 -49C959 78 1027 483 1027 483",
-  ]
+  ], []);
 
   return (
     <div
       className={cn(
-        "absolute inset-0 flex items-center justify-center",
+        "absolute inset-0 flex items-center justify-center pointer-events-none",
         className,
       )}
+      style={{ willChange: 'transform', contentVisibility: 'auto' }}
     >
       <svg
         className="absolute h-[200%] w-[200%] md:h-[180%] md:w-[180%] -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2"
@@ -70,6 +73,7 @@ export const BackgroundBeams = ({ className }: { className?: string }) => {
         height="100%"
         viewBox="-200 -200 1400 1000"
         xmlns="http://www.w3.org/2000/svg"
+        style={{ willChange: 'auto' }}
       >
         <path
           d="M-51 -565C-51 -565 17 -160 481 -33C945 94 1013 499 1013 499"
@@ -83,8 +87,11 @@ export const BackgroundBeams = ({ className }: { className?: string }) => {
             key={`path-${index}`}
             d={path}
             stroke={`url(#linearGradient-${index})`}
-            strokeOpacity="0.4"
-            strokeWidth="0.5"
+            strokeOpacity="0.8"
+            strokeWidth="1.5"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: 1, opacity: 1 }}
+            transition={{ duration: 2, delay: 0.5 + index * 0.1, ease: "easeOut" }}
           />
         ))}
         
@@ -103,13 +110,14 @@ export const BackgroundBeams = ({ className }: { className?: string }) => {
                 x1: ["0%", "100%"],
                 x2: ["0%", "95%"],
                 y1: ["0%", "100%"],
-                y2: ["0%", `${93 + Math.random() * 8}%`],
+                y2: ["0%", "95%"],
               }}
               transition={{
-                duration: Math.random() * 10 + 10,
-                ease: "easeInOut",
+                duration: 25 + index * 3,
+                ease: "linear",
                 repeat: Infinity,
-                delay: Math.random() * 10,
+                delay: 1 + index * 2,
+                repeatType: "loop",
               }}
             >
               <stop stopColor="#18CCFC" stopOpacity="0" />
@@ -123,7 +131,7 @@ export const BackgroundBeams = ({ className }: { className?: string }) => {
             id="paint0_radial_242_278"
             cx="0"
             cy="0"
-            r="1"
+            r="100"
             gradientUnits="userSpaceOnUse"
             gradientTransform="translate(481 499) rotate(-180) scale(481 565)"
           >
