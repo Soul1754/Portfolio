@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
-
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 const inter = Inter({ subsets: ["latin"] });
 const poppins = Poppins({ 
   weight: ["300", "400", "500", "600", "700"],
@@ -40,6 +41,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
+      <Analytics />
+      <SpeedInsights />
       <body className={`${inter.className} ${poppins.variable} antialiased`}>
         {children}
       </body>
