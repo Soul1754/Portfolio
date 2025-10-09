@@ -13,8 +13,17 @@ export function Hero() {
 
     const canvas = canvasRef.current;
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    const camera = new THREE.PerspectiveCamera(
+      75,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      1000
+    );
+    const renderer = new THREE.WebGLRenderer({
+      canvas,
+      alpha: true,
+      antialias: true,
+    });
 
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -28,7 +37,10 @@ export function Hero() {
       posArray[i] = (Math.random() - 0.5) * 10;
     }
 
-    particlesGeometry.setAttribute("position", new THREE.BufferAttribute(posArray, 3));
+    particlesGeometry.setAttribute(
+      "position",
+      new THREE.BufferAttribute(posArray, 3)
+    );
 
     const particlesMaterial = new THREE.PointsMaterial({
       size: 0.005,
@@ -38,7 +50,10 @@ export function Hero() {
       blending: THREE.AdditiveBlending,
     });
 
-    const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+    const particlesMesh = new THREE.Points(
+      particlesGeometry,
+      particlesMaterial
+    );
     scene.add(particlesMesh);
 
     // Create rotating torus
@@ -132,7 +147,8 @@ export function Hero() {
           className="text-xl md:text-2xl text-foreground/70 max-w-2xl mb-12"
           style={{ fontFamily: "'Space Grotesk', sans-serif" }}
         >
-          Crafting exceptional digital experiences with cutting-edge technology and creative design
+          Crafting exceptional digital experiences with cutting-edge technology
+          and creative design
         </motion.p>
 
         <motion.div
@@ -142,14 +158,22 @@ export function Hero() {
           className="flex gap-4 flex-wrap justify-center"
         >
           <button
-            onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
+            onClick={() =>
+              document
+                .getElementById("projects")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
             className="px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 hover:scale-105"
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           >
             View My Work
           </button>
           <button
-            onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+            onClick={() =>
+              document
+                .getElementById("contact")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
             className="px-8 py-4 border-2 border-purple-500 rounded-full hover:bg-purple-500/10 transition-all duration-300"
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           >

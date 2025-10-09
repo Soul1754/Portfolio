@@ -112,9 +112,9 @@ export function About() {
               fontFamily: "'Space Grotesk', sans-serif",
             }}
           >
-            I'm a passionate web designer and developer who
+            I&apos;m a passionate web designer and developer who
             loves creating immersive digital experiences that
-            push the boundaries of what's possible on the web.
+            push the boundaries of what&apos;s possible on the web.
           </p>
         </div>
 

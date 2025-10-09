@@ -13,6 +13,10 @@ const config: Config = {
         foreground: "var(--foreground)",
         border: "var(--border)",
         ring: "var(--ring)",
+        skill: {
+          DEFAULT: "var(--skill-foreground)",
+          foreground: "var(--skill-foreground)",
+        },
         card: {
           DEFAULT: "var(--card)",
           foreground: "var(--card-foreground)",

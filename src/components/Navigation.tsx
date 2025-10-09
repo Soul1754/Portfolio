@@ -21,7 +21,19 @@ export function Navigation() {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      // Special handling for projects section to prevent staggering
+      if (id === "projects") {
+        // Scroll to a bit above the section to trigger enter animation smoothly
+        const offset = window.innerHeight * 0.02; // 2% of viewport height
+        const elementPosition =
+          element.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({
+          top: elementPosition - offset,
+          behavior: "smooth",
+        });
+      } else {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
       setIsOpen(false);
     }
   };
@@ -40,7 +52,9 @@ export function Navigation() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled ? "bg-background/80 backdrop-blur-lg border-b border-border" : ""
+          isScrolled
+            ? "bg-background/80 backdrop-blur-lg border-b border-border"
+            : ""
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">

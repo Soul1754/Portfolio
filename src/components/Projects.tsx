@@ -17,24 +17,40 @@ export function Projects() {
     const section = sectionRef.current;
     const scrollContainer = scrollContainerRef.current;
 
-    // Horizontal scroll animation
+    // Reset position on load
+    gsap.set(scrollContainer, { x: 0 });
+
+    // Horizontal scroll animation with smoother settings
     const scrollWidth = scrollContainer.scrollWidth - window.innerWidth;
 
-    gsap.to(scrollContainer, {
-      x: -scrollWidth,
-      ease: "none",
-      scrollTrigger: {
-        trigger: section,
-        start: "top top",
-        end: () => `+=${scrollWidth}`,
-        scrub: 1,
-        pin: true,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
+    const scrollTrigger = ScrollTrigger.create({
+      trigger: section,
+      start: "top top",
+      end: () => `+=${scrollWidth}`,
+      scrub: 1,
+      pin: true,
+      anticipatePin: 1,
+      invalidateOnRefresh: true,
+      fastScrollEnd: true,
+      preventOverlaps: true,
+      animation: gsap.to(scrollContainer, {
+        x: -scrollWidth,
+        ease: "none",
+      }),
+      onEnter: () => {
+        // Reset position when entering the section
+        gsap.set(scrollContainer, { x: 0 });
       },
     });
 
+    // Refresh ScrollTrigger after a brief delay to prevent staggering
+    const refreshTimeout = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 100);
+
     return () => {
+      clearTimeout(refreshTimeout);
+      scrollTrigger.kill();
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
@@ -42,31 +58,36 @@ export function Projects() {
   const projects = [
     {
       title: "E-Commerce Platform",
-      description: "A modern e-commerce solution with real-time inventory and seamless checkout experience.",
+      description:
+        "A modern e-commerce solution with real-time inventory and seamless checkout experience.",
       tags: ["React", "Node.js", "Stripe"],
       gradient: "from-blue-500 to-cyan-500",
     },
     {
       title: "Portfolio Website",
-      description: "An immersive portfolio showcasing creative work with stunning animations and interactions.",
+      description:
+        "An immersive portfolio showcasing creative work with stunning animations and interactions.",
       tags: ["Three.js", "GSAP", "React"],
       gradient: "from-purple-500 to-pink-500",
     },
     {
       title: "Dashboard Analytics",
-      description: "Real-time analytics dashboard with interactive charts and comprehensive data visualization.",
+      description:
+        "Real-time analytics dashboard with interactive charts and comprehensive data visualization.",
       tags: ["Next.js", "D3.js", "TypeScript"],
       gradient: "from-green-500 to-emerald-500",
     },
     {
       title: "Social Media App",
-      description: "A social platform with real-time messaging, stories, and engaging user interactions.",
+      description:
+        "A social platform with real-time messaging, stories, and engaging user interactions.",
       tags: ["React Native", "Firebase", "Redux"],
       gradient: "from-orange-500 to-red-500",
     },
     {
       title: "AI Content Generator",
-      description: "An AI-powered tool for generating creative content with natural language processing.",
+      description:
+        "An AI-powered tool for generating creative content with natural language processing.",
       tags: ["Python", "OpenAI", "React"],
       gradient: "from-indigo-500 to-purple-500",
     },
@@ -88,7 +109,10 @@ export function Projects() {
             Projects
           </span>
         </h2>
-        <p className="text-xl text-foreground/70" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+        <p
+          className="text-xl text-foreground/70"
+          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+        >
           Scroll to explore →
         </p>
       </div>

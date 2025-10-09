@@ -51,15 +51,16 @@ export function Contact() {
     setFormData({ name: "", email: "", message: "" });
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const socialLinks = [
-    { icon: Mail, label: "Email", href: "mailto:hello@example.com" },
-    { icon: Github, label: "GitHub", href: "https://github.com" },
+    { icon: Mail, label: "Email", href: "mailto:siddhant.gaikwad1754@gmail.com.com" },
+    { icon: Github, label: "GitHub", href: "https://github.com/Soul1754" },
     { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com" },
-    { icon: Twitter, label: "Twitter", href: "https://twitter.com" },
   ];
 
   return (
@@ -74,13 +75,16 @@ export function Contact() {
             className="text-5xl md:text-7xl mb-6 tracking-tighter"
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           >
-            Let's{" "}
+            Let&apos;s{" "}
             <span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
               Connect
             </span>
           </h2>
-          <p className="text-xl text-foreground/70 max-w-3xl mx-auto" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-            Have a project in mind? Let's create something amazing together.
+          <p
+            className="text-xl text-foreground/70 max-w-3xl mx-auto"
+            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+          >
+            Have a project in mind? Let&apos;s create something amazing together.
           </p>
         </div>
 
@@ -166,8 +170,12 @@ export function Contact() {
               >
                 Get in touch
               </h3>
-              <p className="text-foreground/70 mb-8" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-                I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
+              <p
+                className="text-foreground/70 mb-8"
+                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+              >
+                I&apos;m always open to discussing new projects, creative ideas, or
+                opportunities to be part of your visions.
               </p>
             </div>
 
@@ -181,16 +189,24 @@ export function Contact() {
                   className="flex items-center gap-4 p-4 rounded-2xl bg-background border border-border hover:border-purple-500/50 transition-all duration-300 group"
                 >
                   <div className="p-3 rounded-xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 group-hover:from-purple-500 group-hover:to-pink-500 transition-all duration-300">
-                    <link.icon size={24} className="group-hover:text-white transition-colors" />
+                    <link.icon
+                      size={24}
+                      className="group-hover:text-white transition-colors"
+                    />
                   </div>
-                  <span style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{link.label}</span>
+                  <span style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                    {link.label}
+                  </span>
                 </a>
               ))}
             </div>
           </div>
         </div>
 
-        <div className="mt-20 text-center text-foreground/50" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+        <div
+          className="mt-20 text-center text-foreground/50"
+          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+        >
           <p>© 2025 Web Designer Portfolio. Crafted with passion.</p>
         </div>
       </div>
